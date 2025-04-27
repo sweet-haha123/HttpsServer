@@ -61,16 +61,17 @@
 
     <script>
         function goBack() {
-            window.location.href = '/menu'; // 注意这里跳转回菜单页面
+          window.location.href = '/menu';
         }
         function updateStats() {
             console.log('Fetching backend data...');
             
-            fetch('/backend_data', {
+            fetch('/backend', {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    // 'Accept': 'application/json',
+                    // 'Content-Type': 'application/json'
+                    'Accept': 'text/html'
                 },
                 credentials: 'same-origin'  // 添加凭证支持
             })

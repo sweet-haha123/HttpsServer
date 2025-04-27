@@ -1,0 +1,208 @@
+20250427 09:13:21.813459Z 15111 INFO  pid = 15111 - main.cpp:63
+20250427 09:13:22.319789Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:22.594453Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:22.675719Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:22.731324Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:22.804719Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:22.891265Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:22.960807Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:23.004944Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:23.065773Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:23.172977Z 15111 INFO  Database connection established - DbConnection.cpp:36
+20250427 09:13:23.172986Z 15111 INFO  Database connection pool initialized with 10 connections - DbConnectionPool.cpp:36
+20250427 09:13:23.173047Z 15111 WARN  HttpServer[HttpServer] starts listening on0.0.0.0:80 - HttpServer.cpp:33
+20250427 09:14:06.332298Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#1] from 127.0.0.1:53546 - TcpServer.cc:80
+20250427 09:14:06.332410Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#2] from 127.0.0.1:53560 - TcpServer.cc:80
+20250427 09:14:06.363864Z 15129 INFO  File content load into memory (9098 bytes) - FileUtil.h:45
+20250427 09:14:06.363951Z 15129 INFO  Sending response:
+ - HttpServer.cpp:159
+20250427 09:14:06.561373Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#3] from 127.0.0.1:53568 - TcpServer.cc:80
+20250427 09:14:06.932522Z 15129 INFO  请求的啥，url：1 /favicon.ico - HttpServer.cpp:181
+20250427 09:14:06.932529Z 15129 INFO  未找到路由，返回404 - HttpServer.cpp:182
+20250427 09:14:06.932552Z 15129 INFO  Sending response:
+ 404 Not Found
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+
+ - HttpServer.cpp:159
+20250427 09:14:06.933126Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#2 - TcpServer.cc:109
+20250427 09:14:16.346842Z 15128 INFO  Sending response:
+HTTP/1.1 200 OK
+Connection: Keep-Alive
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 40
+Content-Type: application/json
+Set-Cookie: sessionId=174ae5429d1d0d3e27fd00f9d41b16fd; Path=/; HttpOnly
+
+{
+    "success": true,
+    "userId": 2
+} - HttpServer.cpp:159
+20250427 09:14:16.368062Z 15128 INFO  session->getValue("isLoggedIn") = true - MenuHandler.cpp:10
+20250427 09:14:16.368440Z 15128 INFO  File content load into memory (8447 bytes) - FileUtil.h:45
+20250427 09:14:16.368524Z 15128 INFO  Sending response:
+ - HttpServer.cpp:159
+20250427 09:14:16.915875Z 15128 INFO  请求的啥，url：1 /favicon.ico - HttpServer.cpp:181
+20250427 09:14:16.915881Z 15128 INFO  未找到路由，返回404 - HttpServer.cpp:182
+20250427 09:14:16.915912Z 15128 INFO  Sending response:
+ 404 Not Found
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+
+ - HttpServer.cpp:159
+20250427 09:14:16.916298Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#1 - TcpServer.cc:109
+20250427 09:14:33.692421Z 15130 INFO  File content load into memory (18331 bytes) - FileUtil.h:45
+20250427 09:14:33.693385Z 15130 INFO  Sending response:
+ - HttpServer.cpp:159
+20250427 09:14:35.313415Z 15130 INFO  Sending response:
+HTTP/1.1 200 OK
+Connection: Keep-Alive
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 1917
+Content-Type: application/json
+
+{"board":[["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","white","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","black","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"]],"last_move":{"x":4,"y":5},"next_turn":"human","status":"ok","winner":"none"} - HttpServer.cpp:159
+20250427 09:14:39.322831Z 15130 INFO  Sending response:
+HTTP/1.1 200 OK
+Connection: Keep-Alive
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 1917
+Content-Type: application/json
+
+{"board":[["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","white","empty","white","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","black","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","black","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"]],"last_move":{"x":4,"y":7},"next_turn":"human","status":"ok","winner":"none"} - HttpServer.cpp:159
+20250427 09:14:42.426515Z 15130 INFO  Sending response:
+HTTP/1.1 200 OK
+Connection: Keep-Alive
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 1917
+Content-Type: application/json
+
+{"board":[["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","white","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","black","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","white","empty","white","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","black","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","black","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"],["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"]],"last_move":{"x":1,"y":7},"next_turn":"human","status":"ok","winner":"none"} - HttpServer.cpp:159
+20250427 09:14:46.248878Z 15130 INFO  session->getValue("isLoggedIn") = true - MenuHandler.cpp:10
+20250427 09:14:46.248946Z 15130 INFO  File content load into memory (8447 bytes) - FileUtil.h:45
+20250427 09:14:46.249016Z 15130 INFO  Sending response:
+ - HttpServer.cpp:159
+20250427 09:14:55.886023Z 15130 INFO  Sending response:
+HTTP/1.1 200 OK
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 38
+Content-Type: application/json
+
+{
+    "message": "logout successful"
+} - HttpServer.cpp:159
+20250427 09:14:55.887383Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#3 - TcpServer.cc:109
+20250427 09:14:56.212653Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#4] from 127.0.0.1:40510 - TcpServer.cc:80
+20250427 09:14:56.212780Z 15131 INFO  session->getValue("isLoggedIn") =  - GameBackendHandler.cpp:34
+20250427 09:14:56.212797Z 15131 INFO  Response packaged successfully - GomokuServer.cpp:211
+20250427 09:14:56.212810Z 15131 INFO  Sending response:
+HTTP/1.1 401 Unauthorized
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 56
+Content-Type: application/json
+Set-Cookie: sessionId=6e4a718840d7c53613c212cbda15b8d8; Path=/; HttpOnly
+
+{
+    "message": "Unauthorized",
+    "status": "error"
+} - HttpServer.cpp:159
+20250427 09:14:56.213065Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#4 - TcpServer.cc:109
+20250427 09:14:57.044374Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#5] from 127.0.0.1:40512 - TcpServer.cc:80
+20250427 09:14:57.044446Z 15128 INFO  请求的啥，url：1 /favicon.ico - HttpServer.cpp:181
+20250427 09:14:57.044447Z 15128 INFO  未找到路由，返回404 - HttpServer.cpp:182
+20250427 09:14:57.044461Z 15128 INFO  Sending response:
+ 404 Not Found
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+
+ - HttpServer.cpp:159
+20250427 09:14:57.044683Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#5 - TcpServer.cc:109
+20250427 09:14:57.305859Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#6] from 127.0.0.1:40520 - TcpServer.cc:80
+20250427 09:15:20.136942Z 15129 INFO  请求的啥，url：1 /favicon.ico - HttpServer.cpp:181
+20250427 09:15:20.136951Z 15129 INFO  未找到路由，返回404 - HttpServer.cpp:182
+20250427 09:15:20.136970Z 15129 INFO  Sending response:
+ 404 Not Found
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+
+ - HttpServer.cpp:159
+20250427 09:15:20.137441Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#6 - TcpServer.cc:109
+20250427 09:15:26.498996Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#7] from 127.0.0.1:52920 - TcpServer.cc:80
+20250427 09:15:26.499065Z 15130 INFO  session->getValue("isLoggedIn") =  - MenuHandler.cpp:10
+20250427 09:15:26.499082Z 15130 INFO  Response packaged successfully - GomokuServer.cpp:211
+20250427 09:15:26.499097Z 15130 INFO  Sending response:
+HTTP/1.1 401 Unauthorized
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 56
+Content-Type: application/json
+
+{
+    "message": "Unauthorized",
+    "status": "error"
+} - HttpServer.cpp:159
+20250427 09:15:26.499274Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#7 - TcpServer.cc:109
+20250427 09:15:26.500850Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#8] from 127.0.0.1:52936 - TcpServer.cc:80
+20250427 09:15:26.515321Z 15131 INFO  Sending response:
+HTTP/1.1 400 Bad Request
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+Content-Length: 48
+Content-Type: application/json
+
+{
+    "message": "stoi",
+    "status": "error"
+} - HttpServer.cpp:159
+20250427 09:15:26.515845Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#8 - TcpServer.cc:109
+20250427 09:15:26.750241Z 15111 INFO  TcpServer::newConnection [HttpServer] - new connection [HttpServer-0.0.0.0:80#9] from 127.0.0.1:52940 - TcpServer.cc:80
+20250427 09:15:27.008640Z 15128 INFO  请求的啥，url：1 /favicon.ico - HttpServer.cpp:181
+20250427 09:15:27.008649Z 15128 INFO  未找到路由，返回404 - HttpServer.cpp:182
+20250427 09:15:27.008666Z 15128 INFO  Sending response:
+ 404 Not Found
+Connection: close
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 3600
+
+ - HttpServer.cpp:159
+20250427 09:15:27.009012Z 15111 INFO  TcpServer::removeConnectionInLoop [HttpServer] - connection HttpServer-0.0.0.0:80#9 - TcpServer.cc:109
