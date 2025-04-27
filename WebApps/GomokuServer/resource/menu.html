@@ -139,9 +139,32 @@
 
     <script>
         // 绑定点击事件到后台管理按钮
-        document.getElementById('backend-button').addEventListener('click', function() {
-            window.location.href = '/backend'; // 注意这里跳转到 /backend
-        });
+        // document.getElementById('backend-button').addEventListener('click', function() {
+        //     window.location.href = '/backend'; // 注意这里跳转到 /backend
+        // });
+
+        // 后台管理跳转（用fetch方式）
+        function goToBackend() {
+            fetch('/backend', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'text/html'
+                }
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('跳转后台失败，请稍后重试！');
+            });
+        }
+
+        // 绑定点击事件到后台管理按钮
+        document.getElementById('backend-button').addEventListener('click', goToBackend);
         
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Page loaded'); // 调试日志
@@ -217,7 +240,7 @@
         // 绑定点击事件到对战AI按钮
         document.getElementById('play-ai').addEventListener('click', startAiGame);
 
-        // 添加页面刷新/关闭时的处理
+        // 添加页面刷新/关闭时的处理,自动退出，确保当前的在线人数
         window.addEventListener('beforeunload', function(e) {
             const userId = sessionStorage.getItem('userId');
             if (userId) {
@@ -248,7 +271,6 @@
                 }
             }
         });
-
         // 添加页面加载时的用户检查
         window.addEventListener('load', function() {
             const userId = sessionStorage.getItem('userId');

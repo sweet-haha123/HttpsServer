@@ -1,3 +1,0 @@
-/home/qyh/HttpsServer/build/CMakeFiles/rebuild_cache.dir
-/home/qyh/HttpsServer/build/CMakeFiles/edit_cache.dir
-/home/qyh/HttpsServer/build/CMakeFiles/simple_server.dir

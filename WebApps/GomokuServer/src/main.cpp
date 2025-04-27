@@ -4,7 +4,7 @@
 #include <muduo/base/Logging.h>
 #include <muduo/net/EventLoop.h>
 #include <muduo/base/AsyncLogging.h>
-
+#include <muduo/base/TimeZone.h>
 #include "GomokuServer.h"
 
 // 日志文件滚动大小为1MB (1*1024*1024字节)
@@ -22,10 +22,27 @@ void asyncLog(const char* msg, int len)
       logging->append(msg, len);
     }
 }
+
 int main(int argc, char* argv[])
 {
 
+  muduo::TimeZone chinaTime(8 * 3600, "CST");
+  muduo::Logger::setTimeZone(chinaTime);
+  const std::string LogDir="../logs";
+  mkdir(LogDir.c_str(),0755);
+  std::ostringstream LogfilePath;
+  LogfilePath << LogDir << "/" << ::basename(argv[0]); // 完整的日志文件路径
+
+  muduo::AsyncLogging log(LogfilePath.str(), kRollSize);
+  g_asyncLog = &log;
+
+  muduo::Logger::setOutput(asyncLog); // 为Logger设置输出回调, 重新配接输出位置
+  log.start(); // 开启日志后端线程
   
+
+  LOG_INFO << "pid = " << getpid();
+
+
   std::string serverName = "HttpServer";
   int port = 80;
   
@@ -46,23 +63,9 @@ int main(int argc, char* argv[])
     }
   }
 
-  const std::string LogDir="logs";
-  mkdir(LogDir.c_str(),0755);
-  std::ostringstream LogfilePath;
-  LogfilePath << LogDir << "/" << ::basename(argv[0]); // 完整的日志文件路径
-  //  // ⚡ 用 new 出来，生命周期跟着程序走
-  // g_asyncLog = new muduo::AsyncLogging(LogfilePath.str(), kRollSize);
 
-  muduo::AsyncLogging log(LogfilePath.str(), kRollSize);
-  g_asyncLog = &log;
-
-  muduo::Logger::setOutput(asyncLog); // 为Logger设置输出回调, 重新配接输出位置
-  log.start(); // 开启日志后端线程
-  
-
-  LOG_INFO << "pid = " << getpid();
  
-  // muduo::Logger::setLogLevel(muduo::Logger::WARN);
+  muduo::Logger::setLogLevel(muduo::Logger::INFO);
   GomokuServer server(port, serverName);
   server.setThreadNum(4);
   server.start();

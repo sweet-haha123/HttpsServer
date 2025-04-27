@@ -66,12 +66,11 @@
         function updateStats() {
             console.log('Fetching backend data...');
             
-            fetch('/backend', {
+            fetch('/backend_data', {
                 method: 'GET',
                 headers: {
-                    // 'Accept': 'application/json',
-                    // 'Content-Type': 'application/json'
-                    'Accept': 'text/html'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 credentials: 'same-origin'  // 添加凭证支持
             })
