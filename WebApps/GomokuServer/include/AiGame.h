@@ -14,6 +14,7 @@ const std::string EMPTY = "empty";
 const std::string AI_PLAYER = "white";   // AI玩家白棋
 const std::string HUMAN_PLAYER = "black"; // 人类玩家黑棋
 
+
 class AiGame
 {
 public:
