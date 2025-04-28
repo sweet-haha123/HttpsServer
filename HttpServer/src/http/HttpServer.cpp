@@ -168,7 +168,7 @@ void HttpServer::onRequest(const muduo::net::TcpConnectionPtr &conn, const HttpR
 
 // 执行请求对应的路由处理函数
 void HttpServer::handleRequest(const HttpRequest &req, HttpResponse *resp)
-{
+{   
     try
     {
         // 处理请求前的中间件
@@ -191,14 +191,16 @@ void HttpServer::handleRequest(const HttpRequest &req, HttpResponse *resp)
     catch (const HttpResponse& res) 
     {
         // 处理中间件抛出的响应（如CORS预检请求）
-        *resp = res;
+
+         *resp = res;
     }
     catch (const std::exception& e) 
     {
-        // 错误处理
         resp->setStatusCode(HttpResponse::k500InternalServerError);
         resp->setBody(e.what());
     }
+
+
 }
 
 } // namespace http

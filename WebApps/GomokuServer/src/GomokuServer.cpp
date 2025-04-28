@@ -54,11 +54,17 @@ void GomokuServer::initializeSession()
 }
 
 void GomokuServer::initializeMiddleware()
-{
+{   
+    auto limitMiddleware = std::make_shared<http::middleware::LimitMiddleware>(1,3); // 每秒最多100个请求
+    httpServer_.addMiddleware(limitMiddleware);
+
     // 创建中间件
     auto corsMiddleware = std::make_shared<http::middleware::CorsMiddleware>();
     // 添加中间件
     httpServer_.addMiddleware(corsMiddleware);
+
+
+
 }
 
 void GomokuServer::initializeRouter()
@@ -91,6 +97,11 @@ void GomokuServer::initializeRouter()
     httpServer_.Get("/backend_data", [this](const http::HttpRequest& req, http::HttpResponse* resp) {
         getBackendData(req, resp);
     });
+
+    httpServer_.Get("/test", [this](const http::HttpRequest&, http::HttpResponse* resp) {
+        resp->setBody("Test OK");
+    });
+    
 }
 
 void GomokuServer::restartChessGameVsAi(const http::HttpRequest &req, http::HttpResponse *resp)

@@ -12,6 +12,7 @@ public:
     {
         kUnknown,
         k200Ok = 200,
+        
         k204NoContent = 204,
         k301MovedPermanently = 301,
         k400BadRequest = 400,
@@ -19,6 +20,7 @@ public:
         k403Forbidden = 403,
         k404NotFound = 404,
         k409Conflict = 409,
+        k429TooManyRequests = 429,
         k500InternalServerError = 500,
     };
 
