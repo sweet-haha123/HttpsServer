@@ -49,6 +49,23 @@ public:
             LOG_ERROR << "File read failed";
         }
     }
+    
+    //自己加的这个函数
+    void writeBinary(const char* data, size_t len)
+    {
+        std::ofstream out(filePath_, std::ios::binary);
+        if (out.is_open())
+        {
+            out.write(data, len);
+            out.close();
+            LOG_INFO << "Saved file to " << filePath_ << " (" << len << " bytes)";
+        }
+        else
+        {
+            LOG_ERROR << "Failed to open file for writing: " << filePath_;
+        }
+    }
+
 
 private:
     std::string     filePath_;

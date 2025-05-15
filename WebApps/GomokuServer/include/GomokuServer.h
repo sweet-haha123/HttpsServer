@@ -99,6 +99,11 @@ private:
     friend class LogoutHandler;
     friend class AiGameMoveHandler;
     friend class GameBackendHandler;
+    friend class ResourceCentorHandler;
+    friend class ResourceListHandler;
+    friend class ResourceUploadHandler;
+    friend class ResourceDownloadHandler;
+      friend class BackendStatusHandler;
 
 private:
     enum GameType

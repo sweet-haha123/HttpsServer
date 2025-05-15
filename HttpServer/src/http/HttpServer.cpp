@@ -3,6 +3,8 @@
 #include <any>
 #include <functional>
 #include <memory>
+#include <fstream>
+
 
 namespace http
 {
@@ -128,7 +130,7 @@ void HttpServer::onMessage(const muduo::net::TcpConnectionPtr &conn,
         }
         // 如果buf缓冲区中解析出一个完整的数据包才封装响应报文
         if (context->gotAll())
-        {
+        {   
             onRequest(conn, context->request());
             context->reset();
         }
@@ -153,12 +155,43 @@ void HttpServer::onRequest(const muduo::net::TcpConnectionPtr &conn, const HttpR
     httpCallback_(req, &response); // 执行onHttpCallback函数
 
     // 可以给response设置一个成员，判断是否请求的是文件，如果是文件设置为true，并且存在文件位置在这里send出去。
-    muduo::net::Buffer buf;
-    response.appendToBuffer(&buf);
-    // 打印完整的响应内容用于调试
-    LOG_INFO << "Sending response:\n" << buf.toStringPiece().as_string();
+    if (!response.isFileResponse())
+    {
+        muduo::net::Buffer buf;
+        response.appendToBuffer(&buf);
+        // 打印完整的响应内容用于调试
+        LOG_INFO << "Sending response:\n" << buf.toStringPiece().as_string();
 
-    conn->send(&buf);
+        conn->send(&buf);
+    }
+    else
+    {
+         // 1. 构造响应头
+        muduo::net::Buffer headerBuf;
+        response.appendToBuffer(&headerBuf);  // 只添加状态行和头部，不包含 body
+        conn->send(&headerBuf);  // 先发 header
+
+        // 2. 发送文件内容（分块）
+        const std::string filePath = response.getFilePath();
+        std::ifstream file(filePath, std::ios::binary);
+        if (file) {
+            const size_t bufferSize = 8192; // 8KB 块
+            char buffer[bufferSize];
+            while (file) {
+                file.read(buffer, bufferSize);
+                std::streamsize bytesRead = file.gcount();
+                if (bytesRead > 0) {
+                    conn->send(muduo::StringPiece(buffer, bytesRead));
+                }
+            }
+        } else {
+            // 文件打不开，补偿错误提示
+            muduo::net::Buffer errBuf;
+            errBuf.append("HTTP/1.1 500 Internal Server Error\r\n\r\nFile open failed");
+            conn->send(&errBuf);
+        }
+    }
+   
     // 如果是短连接的话，返回响应报文后就断开连接
     if (response.closeConnection())
     {

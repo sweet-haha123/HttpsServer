@@ -27,6 +27,7 @@ public:
     HttpResponse(bool close = true)
         : statusCode_(kUnknown)
         , closeConnection_(close)
+        , isFileResponse_(false)
     {}
 
     void setVersion(std::string version)
@@ -68,6 +69,15 @@ public:
     void setErrorHeader(){}
 
     void appendToBuffer(muduo::net::Buffer* outputBuf) const;
+
+
+    bool isFileResponse() const {return isFileResponse_;}
+    std::string getFilePath() {return filePath_;}
+    void setisFileResponse(const std::string& path)
+    {
+         isFileResponse_ = true;
+         filePath_ = path;
+    }
 private:
     std::string                        httpVersion_; 
     HttpStatusCode                     statusCode_;
@@ -75,7 +85,8 @@ private:
     bool                               closeConnection_;
     std::map<std::string, std::string> headers_;
     std::string                        body_;
-    bool                               isFile_;
+    bool                               isFileResponse_; //判断是否是文件，如果是，采用流式发送
+    std::string                        filePath_;
 };
 
 } // namespace http

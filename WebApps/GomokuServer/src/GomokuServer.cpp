@@ -6,6 +6,12 @@
 #include "../include/handlers/LogoutHandler.h"
 #include "../include/handlers/AiGameMoveHandler.h"
 #include "../include/handlers/GameBackendHandler.h"
+#include "../include/handlers/ResourceCentorHandler.h"
+#include "../include/handlers/ResourceListHandler.h"
+#include "../include/handlers/ResourceUploadHandler.h"
+#include "../include/handlers/ResourceDownloadHandler.h"
+#include "../include/handlers/BackendStatusHandler.h"
+
 #include "../include/GomokuServer.h"
 #include "../../../HttpServer/include/http/HttpRequest.h"
 #include "../../../HttpServer/include/http/HttpResponse.h"
@@ -55,8 +61,8 @@ void GomokuServer::initializeSession()
 
 void GomokuServer::initializeMiddleware()
 {   
-    auto limitMiddleware = std::make_shared<http::middleware::LimitMiddleware>(1,3); // 每秒最多100个请求
-    httpServer_.addMiddleware(limitMiddleware);
+    // auto limitMiddleware = std::make_shared<http::middleware::LimitMiddleware>(1,3); // 每秒最多100个请求
+    // httpServer_.addMiddleware(limitMiddleware);
 
     // 创建中间件
     auto corsMiddleware = std::make_shared<http::middleware::CorsMiddleware>();
@@ -101,6 +107,12 @@ void GomokuServer::initializeRouter()
     httpServer_.Get("/test", [this](const http::HttpRequest&, http::HttpResponse* resp) {
         resp->setBody("Test OK");
     });
+
+    httpServer_.Get("/resource_centor", std::make_shared<ResourceCentorHandler>(this));
+     httpServer_.Get("/resource/list", std::make_shared<ResourceListHandler>(this));
+     httpServer_.Post("/resource/download", std::make_shared<ResourceDownloadHandler>(this));
+     httpServer_.Post("/upload", std::make_shared<ResourceUploadHandler>(this));
+     httpServer_.Get("/backend_status", std::make_shared<BackendStatusHandler>(this));
     
 }
 

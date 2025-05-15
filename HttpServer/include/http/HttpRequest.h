@@ -20,6 +20,7 @@ public:
     HttpRequest()
         : method_(kInvalid)
         , version_("Unknown")
+        ,multipart_form_data_status(true)
     {
     }
     
@@ -74,6 +75,12 @@ public:
 
     void swap(HttpRequest& that);
 
+    void set_parseMultipartData_state(bool flag)
+    {
+        multipart_form_data_status=flag;
+    }
+    bool get_parseMultipartData_state() const {return multipart_form_data_status ;}
+
 private:
     Method                                       method_; // 请求方法
     std::string                                  version_; // http版本
@@ -84,6 +91,7 @@ private:
     std::map<std::string, std::string>           headers_; // 请求头
     std::string                                  content_; // 请求体
     uint64_t                                     contentLength_ { 0 }; // 请求体长度
+    bool                                         multipart_form_data_status;
 };  
 
 } // namespace http

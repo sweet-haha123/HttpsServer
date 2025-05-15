@@ -1,170 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>五子棋</title>
-    <style>
-        /* 全局样式 */
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", Arial, sans-serif;
-            background-color: #1e1e2f;
-            color: #fff;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiteHub 主界面</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+    .card p {
+      color: #666;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .menu-option {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 8px 16px; /* 增加内边距 */
+    color: #0e0f0f;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #007BFF; /* 添加边框 */
+    border-radius: 8px; /* 圆角边框 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+    background-color: white; /* 确保背景不透明 */
+    }
 
-        /* 加载动画容器 */
-        #loading-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+    /* 悬停效果 */
+    .menu-option:hover {
+    color: white !important;
+    background-color: #007BFF; /* 背景色变化 */
+    border-color: #0056b3; /* 边框颜色加深 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 添加阴影 */
+    }
 
-        /* 加载标题 */
-        #loading-title {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #00c3ff;
-            text-shadow: 0 0 5px #00c3ff, 0 0 10px #008bff;
-        }
+    /* 点击效果 */
+    .menu-option:active {
+    transform: scale(0.98); /* 模拟按钮按压效果 */
+    }
 
-        /* 进度条 */
-        .progress-bar {
-            width: 300px;
-            height: 20px;
-            background: #444;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px #000;
-        }
 
-        .progress-bar-inner {
-            height: 100%;
-            background: linear-gradient(to right, #00c3ff, #00e1ff);
-            width: 0;
-            transition: width 1.5s ease;
-        }
+    /* 加载动画容器 */
+    #loading-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
 
-        /* 加载提示文字 */
-        #loading-text {
-            margin-top: 15px;
-            font-size: 1.2em;
-            color: #ccc;
-        }
+       
+    /* 进度条 */
+    .progress-bar {
+        width: 300px;
+        height: 20px;
+        background: #444;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px #000;
+    }
 
-        /* 菜单页面样式 */
-        #menu-container {
-            display: none;
-            text-align: center;
-            padding: 50px 20px;
-        }
+    .progress-bar-inner {
+        height: 100%;
+        background: linear-gradient(to right, #00c3ff, #00e1ff);
+        width: 0;
+        transition: width 1.5s ease;
+    }
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #00c3ff;
-            text-shadow: 0 0 5px #00c3ff, 0 0 10px #008bff;
-        }
+    /* 菜单页面样式 */
+    #menu-container {
+        display: none;
+        text-align: center;
+        padding: 50px 20px;
+    }
 
-        .menu-option {
-            margin: 10px 0;
-            font-size: 1.5em;
-            color: #fff;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .menu-option:hover {
-            color: #00e1ff;
-            text-shadow: 0 0 5px #00e1ff;
-        }
-
-        .menu-border {
-            margin: 10px auto;
-            width: 80%;
-            height: 2px;
-            background: #00c3ff;
-            box-shadow: 0 0 5px #00c3ff;
-        }
-
-        /* 输入提示样式 */
-        #input-hint {
-            font-size: 1.2em;
-            margin-top: 20px;
-            color: #00e1ff;
-        }
-
-        input {
-            margin-top: 10px;
-            font-size: 1em;
-            padding: 5px 10px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-            text-align: center;
-            background-color: #333;
-            color: #fff;
-        }
-    </style>
+  </style>
 </head>
-
 <body>
-    <!-- 加载动画 -->
-    <div id="backend-button" style="position: absolute; top: 20px; left: 20px; font-size: 1.2em; color: #00c3ff; cursor: pointer; text-shadow: 0 0 5px #00c3ff;">
-        后台管理
+  <header>
+    <h1>LiteHub</h1>
+    <nav>
+      <a href="/">首页</a>
+      <a href="/gomoku">五子棋</a>
+      <a href="/resource">资源中心</a>
+      <a href="/status">状态监控</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>欢迎来到 LiteHub，一个集娱乐与实用功能为一体的平台！</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h2>🎮 五子棋对战</h2>
+        <p>体验轻量弱AI五子棋对战</p>
+        <div id="play-ai" class="menu-option">进入游戏 </div>
+      </div>
+      <div class="card">
+        <h2>📁 上传/下载资源</h2>
+        <p>支持多文件上传与压缩下载</p>
+        <div id="resource_centor" class="menu-option">访问资源中心 </div>
+      </div>
+      <div class="card">
+        <h2>📊 状态监控</h2>
+        <p>查看缓存命中、限流速率和压缩比</p>
+        <div id="backend_status" class="menu-option">查看状态 </div>
+      </div>
     </div>
-    <div id="loading-container">
-        <div id="loading-title">五子棋</div>
-        <div class="progress-bar">
-            <div class="progress-bar-inner"></div>
-        </div>
-        <div id="loading-text">加载中...</div>
-    </div>
+  </div>
+  <script>
 
-    <!-- 菜单页面 -->
-    <div id="menu-container">
-        <h1>欢迎来到五子棋</h1>
-        <div class="menu-border"></div>
-        <div class="menu-option" id="play-ai">[1] 对战AI</div>
-        <div class="menu-option">[2] 匹配玩家</div>
-        <div class="menu-option">[0] 退出游戏</div>
-    </div>
+        // // 后台管理跳转（用fetch方式）
+        // function goToBackend() {
+        //     fetch('/backend', {
+        //         method: 'GET',
+        //         headers: {
+        //             'Accept': 'text/html'
+        //         }
+        //     })
+        //     .then(response => response.text())
+        //     .then(html => {
+        //         document.open();
+        //         document.write(html);
+        //         document.close();
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //         alert('跳转后台失败，请稍后重试！');
+        //     });
+        // }
 
-    <script>
-        // 绑定点击事件到后台管理按钮
-        // document.getElementById('backend-button').addEventListener('click', function() {
-        //     window.location.href = '/backend'; // 注意这里跳转到 /backend
-        // });
-
-        // 后台管理跳转（用fetch方式）
-        function goToBackend() {
-            fetch('/backend', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'text/html'
-                }
-            })
-            .then(response => response.text())
-            .then(html => {
-                document.open();
-                document.write(html);
-                document.close();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('跳转后台失败，请稍后重试！');
-            });
-        }
-
-        // 绑定点击事件到后台管理按钮
-        document.getElementById('backend-button').addEventListener('click', goToBackend);
+        // // 绑定点击事件到后台管理按钮
+        // document.getElementById('backend-button').addEventListener('click', goToBackend);
         
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Page loaded'); // 调试日志
@@ -201,6 +217,9 @@
             }, 2000); // 2秒后强制显示菜单
         });
 
+        //##########################################################################
+        //######################开始游戏#############################################
+        //##########################################################################
         // 对战AI功能
         function startAiGame() {
             const userId = sessionStorage.getItem('userId');
@@ -240,46 +259,101 @@
         // 绑定点击事件到对战AI按钮
         document.getElementById('play-ai').addEventListener('click', startAiGame);
 
-        // 添加页面刷新/关闭时的处理,自动退出，确保当前的在线人数
-        window.addEventListener('beforeunload', function(e) {
-            const userId = sessionStorage.getItem('userId');
-            if (userId) {
-                try {
-                    // 创建 Blob 对象，指定 content-type
-                    const data = new Blob([JSON.stringify({
-                        userId: userId,
-                        type: 'refresh',
-                        gameType: 0
-                    })], { type: 'application/json' });
+        //##########################################################################
 
-                    // 使用 navigator.sendBeacon 发送异步请求
-                    const success = navigator.sendBeacon('/user/logout', data);
+
+
+        // 资源中心跳转（用fetch方式）
+        function goToResourceCentor() {
+          window.location.href = '/resource_centor';
+            // fetch('/resource_centor', {
+            //     method: 'GET',
+            //     headers: {
+            //         'Accept': 'text/html'
+            //     }
+            // })
+            // .then(response => response.text())
+            // .then(html => {
+            //     document.open();
+            //     document.write(html);
+            //     document.close();
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            //     alert('跳转失败，请稍后重试！');
+            // });
+        }
+
+        // 绑定点击事件到后台管理按钮
+        document.getElementById('resource_centor').addEventListener('click', goToResourceCentor);
+
+
+
+        //后台监控跳转（用fetch方式）
+        function goToBackendStatus() {
+          window.location.href = '/backend_status';
+
+            // fetch('/backend_status', {
+            //     method: 'GET',
+            //     headers: {
+            //         'Accept': 'text/html'
+            //     }
+            // })
+            // .then(response => response.text())
+            // .then(html => {
+            //     document.open();
+            //     document.write(html);
+            //     document.close();
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            //     alert('跳转失败，请稍后重试！');
+            // });
+        }
+
+        // 绑定点击事件到后台管理按钮
+        document.getElementById('backend_status').addEventListener('click', goToBackendStatus);
+
+
+        // // 添加页面刷新/关闭时的处理,自动退出，确保当前的在线人数
+        // window.addEventListener('beforeunload', function(e) {
+        //     const userId = sessionStorage.getItem('userId');
+        //     if (userId) {
+        //         try {
+        //             // 创建 Blob 对象，指定 content-type
+        //             const data = new Blob([JSON.stringify({
+        //                 userId: userId,
+        //                 type: 'refresh',
+        //                 gameType: 0
+        //             })], { type: 'application/json' });
+
+        //             // // 使用 navigator.sendBeacon 发送异步请求
+        //             // const success = navigator.sendBeacon('/user/logout', data);
                     
-                    // 如果 sendBeacon 失败，尝试使用同步 XMLHttpRequest
-                    if (!success) {
-                        const xhr = new XMLHttpRequest();
-                        xhr.open('POST', '/user/logout', false); // 同步请求
-                        xhr.setRequestHeader('Content-Type', 'application/json');
-                        xhr.send(JSON.stringify({
-                            userId: userId,
-                            type: 'refresh',
-                            gameType: 0
-                        }));
-                    }
-                } catch (error) {
-                    console.error('Logout error:', error);
-                }
-            }
-        });
+        //             // // 如果 sendBeacon 失败，尝试使用同步 XMLHttpRequest
+        //             // if (!success) {
+        //             //     const xhr = new XMLHttpRequest();
+        //             //     xhr.open('POST', '/user/logout', false); // 同步请求
+        //             //     xhr.setRequestHeader('Content-Type', 'application/json');
+        //             //     xhr.send(JSON.stringify({
+        //             //         userId: userId,
+        //             //         type: 'refresh',
+        //             //         gameType: 0
+        //             //     }));
+        //             //}
+        //         } catch (error) {
+        //             console.error('Logout error:', error);
+        //         }
+        //     }
+        // });
         // 添加页面加载时的用户检查
-        window.addEventListener('load', function() {
-            const userId = sessionStorage.getItem('userId');
-            if (!userId) {
-                window.location.href = '/entry';
-                return;
-            }
-        });
+        // window.addEventListener('load', function() {
+        //     const userId = sessionStorage.getItem('userId');
+        //     if (!userId) {
+        //         window.location.href = '/entry';
+        //         return;
+        //     }
+        // });
     </script>
 </body>
-
 </html>

@@ -111,11 +111,7 @@ void LimitMiddleware::before(HttpRequest& request)
         resp.setContentType("application/json");
         resp.setContentLength(0);
         resp.setBody("Rate limit exceeded. Please try again later.");
-        // 无令牌，限流，抛出 429 响应
-        // HttpResponse resp;
-        // resp.setStatusCode(HttpResponse::k429TooManyRequests);
-        // resp.setStatusMessage("Too Many Requests");
-        // resp.setBody("Rate limit exceeded. Please try again later.");
+
         throw resp;
     }
 }

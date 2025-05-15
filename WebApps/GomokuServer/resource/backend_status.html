@@ -1,0 +1,73 @@
+<!-- /status 页面 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>状态监控 - LiteHub</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #eef2f5; }
+    .container { padding: 2rem; max-width: 800px; margin: auto; background: white; border-radius: 8px; }
+    h2 { color: #007BFF; }
+    .section { margin-bottom: 2rem; }
+    .card { background: #f9f9f9; padding: 1rem; border-left: 5px solid #007BFF; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+    <div id="menu-button" style="position: absolute; top: 20px; left: 20px; font-size: 1.2em; color: #00c3ff; cursor: pointer; text-shadow: 0 0 5px #00c3ff;">
+    返回菜单
+    </div>
+  <div class="container">
+    <h2>📊 状态监控</h2>
+
+    <div class="section">
+      <h3>⏱ 限流状态</h3>
+      <div class="card">
+        <!-- 当前 QPS：18 / 上限 20<br> -->
+        剩余令牌数：4
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🧠 缓存统计</h3>
+      <div class="card">
+        总请求数：250<br>
+        缓存命中：184（命中率 73.6%）<br>
+        未命中：66
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📦 Gzip 压缩统计</h3>
+      <div class="card">
+        启用率：64%<br>
+        平均压缩比：41.2%
+      </div>
+    </div>
+  </div>
+  <script>
+             // 后台管理跳转（用fetch方式）
+    function Menu() {
+         window.location.href = '/menu';
+        // fetch('/menu', {
+        //     method: 'GET',
+        //     headers: {
+        //         'Accept': 'text/html'
+        //     }
+        // })
+        // .then(response => response.text())
+        // .then(html => {
+        //     document.open();
+        //     document.write(html);
+        //     document.close();
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        //     alert('跳转菜单失败，请稍后重试！');
+        // });
+    }
+
+    // 绑定点击事件到后台管理按钮
+    document.getElementById('menu-button').addEventListener('click', Menu);
+  </script>
+</body>
+</html>

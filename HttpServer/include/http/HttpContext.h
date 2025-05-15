@@ -41,6 +41,9 @@ public:
     HttpRequest& request()
     { return request_;}
 
+    //解析各种文件
+    bool parseMultipartData(muduo::net::Buffer *buf);
+
 private:
     bool processRequestLine(const char* begin, const char* end);
 private:
